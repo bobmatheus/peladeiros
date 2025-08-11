@@ -1,0 +1,9 @@
+<!-- templates/reservas/reserva_confirmacao.html -->
+{% extends 'base.html' %}
+{% block content %}
+<div class="text-center py-5">
+  <h1 class="h4">Reserva confirmada! 🎉</h1>
+  <p class="text-muted">Te mandamos os detalhes por e-mail/WhatsApp. Bom jogo!</p>
+  <a href="{% url 'reservas:home' %}" class="btn btn-success">Voltar para início</a>
+</div>
+{% endblock %}
