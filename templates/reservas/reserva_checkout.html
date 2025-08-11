@@ -1,0 +1,31 @@
+<!-- templates/reservas/reserva_checkout.html -->
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="h4 mb-3">Confirmar reserva</h1>
+<div class="card">
+  <div class="card-body">
+    {% if campo %}
+      <h2 class="h5">{{ campo.nome }}</h2>
+      <div class="text-muted small mb-2">{{ campo.bairro }} · {{ campo.gramado }}</div>
+    {% endif %}
+    <div class="mb-3">
+      <div><strong>Início:</strong> {{ inicio }}</div>
+      <div><strong>Fim:</strong> {{ fim }}</div>
+      {% if preco %}<div><strong>Valor estimado:</strong> R$ {{ preco }}</div>{% endif %}
+    </div>
+    <form method="post">{% csrf_token %}
+      <input type="hidden" name="campo_id" value="{{ campo.id }}">
+      <input type="hidden" name="inicio" value="{{ inicio }}">
+      <input type="hidden" name="fim" value="{{ fim }}">
+      <div class="mb-3">
+        <label class="form-label">Observação (opcional)</label>
+        <textarea name="observacao" class="form-control" rows="2" placeholder="Nome do racha, regras, etc."></textarea>
+      </div>
+      <div class="d-flex gap-2">
+        <a href="javascript:history.back()" class="btn btn-outline-secondary">Voltar</a>
+        <button class="btn btn-success">Confirmar reserva</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

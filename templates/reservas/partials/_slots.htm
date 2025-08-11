@@ -1,0 +1,15 @@
+<!-- templates/reservas/partials/_slots.html -->
+{% if disponibilidade.slots %}
+  <div class="row g-2">
+    {% for s in disponibilidade.slots %}
+      <div class="col-6 col-md-4">
+        <a class="btn btn-outline-success w-100"
+           href="{% url 'reservas:checkout' %}?campo_id={{ campo_id }}&inicio={{ s.inicio }}&fim={{ s.fim }}&preco={{ s.preco }}">
+          {{ s.inicio_display }} – {{ s.fim_display }}
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="alert alert-warning">Sem horários disponíveis para essa data.</div>
+{% endif %}

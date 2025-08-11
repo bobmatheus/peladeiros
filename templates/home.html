@@ -1,0 +1,23 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+{% block title %}Reserve campos de futebol no RJ - Peladeiros{% endblock %}
+{% block content %}
+<div class="p-4 p-md-5 mb-4 bg-success text-white rounded">
+  <h1 class="display-6 fw-bold">Aluguel de campos no Rio · Feche sua pelada em minutos</h1>
+  <p class="lead">Escolha bairro, dia e horário. O resto é com a gente.</p>
+  <form class="row g-2" action="{% url 'reservas:campos_list' %}">
+    <div class="col-12 col-md-4">
+      <input name="bairro" class="form-control" placeholder="Bairro (ex: Tijuca)">
+    </div>
+    <div class="col-6 col-md-3">
+      <input type="date" name="data" class="form-control">
+    </div>
+    <div class="col-6 col-md-3">
+      <input type="time" name="horario" class="form-control">
+    </div>
+    <div class="col-12 col-md-2 d-grid">
+      <button class="btn btn-dark">Buscar</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
