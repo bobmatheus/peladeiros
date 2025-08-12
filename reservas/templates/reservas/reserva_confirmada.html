@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Reserva confirmada! — Peladeiros{% endblock %}
+{% block content %}
+<section class="container confirm">
+  <div class="confirm-card">
+    <div class="icon-ok">✓</div>
+    <h1>Reserva confirmada!</h1>
+    <p>Enviamos os detalhes para seu e-mail e WhatsApp.</p>
+    <div class="details">
+      <p><strong>Campo:</strong> {{ campo.nome }}</p>
+      <p><strong>Quando:</strong> {{ data }} às {{ hora }}</p>
+      <p><strong>Endereço:</strong> {{ campo.endereco }}, {{ campo.bairro }} — {{ campo.cidade }}</p>
+    </div>
+    <div class="cta-row">
+      <a href="{% url 'reservas:campos_list' %}" class="btn btn-outline">Reservar outro horário</a>
+      <a href="https://wa.me/5500000000000?text=Partiu%20pelada%20{{ data }}%20às%20{{ hora }}%20no%20{{ campo.nome }}!" target="_blank" rel="noopener" class="btn btn-primary">Chamar a galera</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

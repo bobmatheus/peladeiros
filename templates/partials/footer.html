@@ -1,0 +1,35 @@
+<footer class="site-footer" id="contato">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand">Peladeiros</div>
+        <p class="muted">Bora marcar a pelada? Reserve campos no Rio sem resenha.</p>
+        <div class="badges">
+          <span class="badge">Pix</span>
+          <span class="badge">Cartão</span>
+          <span class="badge">Boleto</span>
+          <span class="badge">SSL Seguro</span>
+        </div>
+      </div>
+      <div>
+        <h4>Peladas</h4>
+        <ul>
+          <li><a href="{% url 'reservas:campos_list' %}">Ver campos</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#faq">Perguntas frequentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="mailto:contato@peladeiros.com.br">contato@peladeiros.com.br</a></li>
+          <li><a href="https://wa.me/5500000000000" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li>Rio de Janeiro — RJ</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <small>© {{ now|date:"Y" }} Peladeiros. Todos os direitos reservados.</small>
+      </div>
+    </div>
+  </footer>

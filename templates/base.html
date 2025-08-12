@@ -1,45 +1,35 @@
-<!-- templates/base.html -->
-<!doctype html>
+{% load static %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/peladeiros.css' %}">
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="utf-8">
-  <title>{% block title %}Peladeiros - Aluguel de Campos{% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="{% block meta_desc %}Reserve seu campo no Rio com facilidade. Junte a galera e feche a pelada!{% endblock %}">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="{% static 'css/app.css' %}" rel="stylesheet">
+  <title>{% block title %}Peladeiros — Reserve seu campo no Rio{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Bora marcar a pelada? Reserve campos de futebol no Rio de Janeiro em minutos. Pagamento fácil, cancelamento flexível e disponibilidade em tempo real.{% endblock %}">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  {% block head_extra %}{% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="{% url 'reservas:home' %}">Peladeiros RJ</a>
-    <div class="ms-auto d-flex gap-2">
-      <a class="btn btn-success" href="{% url 'reservas:campos_list' %}">Reservar agora</a>
-      {% if request.session.access %}
-        <form method="post" action="{% url 'usuarios:logout' %}">{% csrf_token %}
-          <button class="btn btn-outline-light">Sair</button>
-        </form>
-      {% else %}
-        <a class="btn btn-outline-light" href="{% url 'usuarios:login' %}?next={{ request.get_full_path }}">Entrar</a>
-      {% endif %}
-    </div>
-  </div>
-</nav>
+  {% include 'partials/navbar.html' %}
 
-<main class="container my-4">
-  {% for message in messages %}
-    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-  {% endfor %}
-  {% block content %}{% endblock %}
-</main>
+  <main id="content">
+    {% block content %}{% endblock %}
+  </main>
 
-<footer class="bg-light py-4 mt-5 border-top">
-  <div class="container small text-muted">
-    Fechou a pelada? Partiu bola! ⚽
-  </div>
-</footer>
+  {% include 'partials/footer.html' %}
 
-<script src="https://unpkg.com/htmx.org@1.9.12"></script>
-<script src="{% static 'js/app.js' %}"></script>
+  <a href="https://wa.me/5500000000000?text=Quero%20reservar%20um%20campo%20para%20hoje" class="whatsapp-float" aria-label="Chamar no WhatsApp" rel="noopener" >
+    <svg aria-hidden="true" viewBox="0 0 32 32"><path d="M19.11 17.64c-.28-.14-1.64-.81-1.9-.9-.26-.1-.45-.14-.65.14-.19.28-.74.9-.91 1.08-.17.19-.34.21-.62.07-.28-.14-1.16-.43-2.21-1.36-.82-.73-1.37-1.63-1.53-1.9-.16-.28-.02-.43.12-.57.12-.12.28-.31.41-.47.14-.16.19-.28.28-.47.09-.19.05-.35-.02-.5-.07-.14-.65-1.56-.9-2.14-.24-.57-.48-.49-.65-.5-.17-.01-.35-.01-.54-.01-.19 0-.5.07-.76.35-.26.28-.99.97-.99 2.37 0 1.4 1.02 2.75 1.16 2.94.14.19 2 3.04 4.85 4.25.68.29 1.21.47 1.62.6.68.22 1.3.19 1.79.12.55-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33zM16.03 28c-2.09 0-4.06-.57-5.77-1.57L6 28l1.6-4.14A11.91 11.91 0 0 1 4 16.02C4 9.38 9.37 4 16.03 4 22.67 4 28 9.38 28 16.02 28 22.67 22.67 28 16.03 28zm0-22.5C10.3 5.5 5.5 10.29 5.5 16.02c0 2.25.74 4.33 2 6.02l-1.31 3.6 3.73-1.2a10.45 10.45 0 0 0 6.1 1.93c5.73 0 10.52-4.8 10.52-10.53C26.54 10.29 21.76 5.5 16.03 5.5z" fill="#fff"/></svg>
+  </a>
+
+  <a href="#reserva-cta" class="cta-stick-mobile">Reservar campo</a>
+
+  <script src="{% static 'js/main.js' %}"></script>
+  {% block body_extra %}{% endblock %}
 </body>
 </html>

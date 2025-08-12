@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Confirmar reserva — {{ campo.nome }}{% endblock %}
+{% block content %}
+<section class="container checkout">
+  <h1>Confirmar reserva</h1>
+
+  <div class="resumo">
+    <h3>{{ campo.nome }}</h3>
+    <p class="muted">{{ data }} às {{ hora }}</p>
+    <p class="price-lg">R$ {{ preco_total }}</p>
+  </div>
+
+  <form method="post" class="form">
+    {% csrf_token %}
+    <div class="grid-two">
+      <label>Nome completo
+        <input type="text" name="nome" required placeholder="Seu nome">
+      </label>
+      <label>WhatsApp
+        <input type="tel" name="whatsapp" required placeholder="(21) 9 0000-0000">
+      </label>
+    </div>
+    <label>E-mail
+      <input type="email" name="email" required placeholder="voce@email.com">
+    </label>
+
+    <label>Forma de pagamento
+      <select name="pagamento" required>
+        <option value="pix">Pix</option>
+        <option value="cartao">Cartão</option>
+        <option value="boleto">Boleto</option>
+      </select>
+    </label>
+
+    <label>Observações (opcional)
+      <textarea name="obs" rows="3" placeholder="Ex.: levar coletes, confirmar bolas"></textarea>
+    </label>
+
+    <button class="btn btn-primary btn-lg" type="submit">Confirmar e pagar</button>
+    <p class="muted small">Ao confirmar, você aceita nossos Termos e Política de Cancelamento.</p>
+  </form>
+</section>
+{% endblock %}

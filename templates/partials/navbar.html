@@ -1,0 +1,17 @@
+<header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/">Peladeiros</a>
+      <nav class="nav">
+        <a href="{% url 'reservas:home' %}">Início</a>
+        <a href="{% url 'reservas:campos_list' %}">Campos</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <div class="header-cta">
+        <a href="{% url 'reservas:campos_list' %}" class="btn btn-primary">Reservar agora</a>
+        <a href="{% url 'usuarios:login' %}" class="btn btn-outline">Entrar</a>
+      </div>
+      <button class="menu-toggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Campos no Rio — Disponibilidade e preços{% endblock %}
+{% block content %}
+<section class="container page-header">
+  <h1>Campos disponíveis</h1>
+  <p class="muted">Escolha o campo, veja horários e feche agora.</p>
+  <form method="get" class="filters">
+    <input type="text" name="q" value="{{ request.GET.q }}" placeholder="Buscar bairro ou nome">
+    <select name="modalidade">
+      <option value="">Modalidade</option>
+      <option {% if request.GET.modalidade == "Society 7x7" %}selected{% endif %}>Society 7x7</option>
+      <option {% if request.GET.modalidade == "Futsal" %}selected{% endif %}>Futsal</option>
+      <option {% if request.GET.modalidade == "Campo 11" %}selected{% endif %}>Campo 11</option>
+    </select>
+    <input type="date" name="data" value="{{ request.GET.data }}">
+    <button class="btn btn-primary">Filtrar</button>
+  </form>
+</section>
+
+<section class="container grid-campos">
+  {% for campo in campos %}
+  <article class="campo-card">
+    <a href="{% url 'reservas:campo_detail' campo.id %}" class="thumb">
+      <img src="{{ campo.thumb_url|default_if_none:static('img/campo_thumb.jpg') }}" alt="Campo {{ campo.nome }}">
+      <span class="price">R$ {{ campo.preco_hora }} / hora</span>
+    </a>
+    <div class="card-body">
+      <h3><a href="{% url 'reservas:campo_detail' campo.id %}">{{ campo.nome }}</a></h3>
+      <p class="muted">{{ campo.bairro }} • {{ campo.cidade }}</p>
+      <div class="tags">
+        {% for tag in campo.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+      </div>
+      <div class="meta">
+        <span class="stars">★★★★☆</span>
+        <span class="muted">{{ campo.avaliacoes }} avaliações</span>
+      </div>
+      <a href="{% url 'reservas:campo_detail' campo.id %}" class="btn btn-outline">Ver horários</a>
+    </div>
+  </article>
+  {% empty %}
+  <p>Nenhum campo encontrado para o filtro aplicado.</p>
+  {% endfor %}
+</section>
+{% endblock %}
