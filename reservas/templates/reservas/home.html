@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Bora marcar a pelada? Reserve campos no Rio — Peladeiros{% endblock %}
+{% block content %}
+
+{% static 'img/hero.jpg' as hero_bg %}
+
+<section class="hero" style="background-image: url('{{ hero_bg }}');">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <div class="rating" aria-label="Avaliação média 4,8 de 5">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <span class="rating-text">4,8/5 por quem joga toda semana</span>
+      </div>
+      <h1>Bora marcar a pelada?</h1>
+      <p class="sub">Reserve campos de futebol no Rio em minutos. Sem burocracia, sem resenha — partiu bola rolando.</p>
+      <div class="hero-cta" id="reserva-cta">
+        <a href="{% url 'reservas:campos_list' %}" class="btn btn-primary btn-lg">Reservar campo agora</a>
+        <a href="#como-funciona" class="btn btn-ghost">Como funciona</a>
+      </div>
+      <ul class="benefits">
+        <li>Cancelamento grátis até 6h antes;</li>
+        <li>Disponibilidade em tempo real;</li>
+        <li>Pix e Cartão em 1 clique;</li>
+        <li>Chuva? Consulte nossa política flex.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="search-strip" aria-label="Busca de campos disponíveis">
+  <div class="container strip-inner">
+    <form action="{% url 'reservas:campos_list' %}" method="get" class="search-form">
+      <input type="text" name="q" placeholder="Bairro, campo ou ponto de referência (ex.: Barra, Méier, Tijuca)" aria-label="Pesquisar por bairro, campo ou referência">
+      <input type="date" name="data" aria-label="Data da reserva">
+      <select name="modalidade" aria-label="Modalidade">
+        <option value="">Modalidade</option>
+        <option>Society 7x7</option>
+        <option>Futsal</option>
+        <option>Campo 11</option>
+      </select>
+      <button type="submit" class="btn btn-primary">Ver disponibilidade</button>
+    </form>
+    <div class="urgency" role="status">Hoje à noite: poucas vagas em Botafogo e Vila da Penha</div>
+  </div>
+</section>
+
+<section class="highlights">
+  <div class="container cards">
+    <article class="card">
+      <img src="{% static 'img/campo_thumb.jpg' %}" alt="Campo society iluminado" loading="lazy" width="360" height="240">
+      <div class="card-body">
+        <h3>Campos iluminados</h3>
+        <p>Noite, gramado sintético e aquela resenha depois do jogo.</p>
+      </div>
+    </article>
+    <article class="card">
+      <img src="{% static 'img/crowd.jpg' %}" alt="Amigos comemorando após o jogo" loading="lazy" width="360" height="240">
+      <div class="card-body">
+        <h3>Chama a galera</h3>
+        <p>Convite pelo WhatsApp em 1 clique, pagamento dividido.</p>
+      </div>
+    </article>
+    <article class="card">
+      <img src="{% static 'img/vestiario.jpg' %}" alt="Vestiário com chuveiros e armários" loading="lazy" width="360" height="240">
+      <div class="card-body">
+        <h3>Estrutura completa</h3>
+        <p>Vestiário, estacionamento e cantina com aquela gelada.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="howitworks" id="como-funciona">
+  <div class="container steps">
+    <div class="step">
+      <span class="step-number" aria-hidden="true">1</span>
+      <h4>Escolha o campo</h4>
+      <p>Veja fotos, localização e avaliação da galera.</p>
+    </div>
+    <div class="step">
+      <span class="step-number" aria-hidden="true">2</span>
+      <h4>Selecione o horário</h4>
+      <p>Disponibilidade em tempo real, sem ligar pro gestor.</p>
+    </div>
+    <div class="step">
+      <span class="step-number" aria-hidden="true">3</span>
+      <h4>Confirme e partiu</h4>
+      <p>Pix/Cartão e confirmação instantânea no seu e-mail/WhatsApp.</p>
+    </div>
+  </div>
+</section>
+
+<section class="social-proof" aria-label="Depoimentos de jogadores">
+  <div class="container">
+    <blockquote class="quote">
+      “Virou rotina de terça e quinta, sem dor de cabeça. A plataforma é rápida e os campos são top.”
+      <cite>— Bruno, Botafogo</cite>
+    </blockquote>
+    <blockquote class="quote">
+      “Fechei um society 7x7 na Tijuca em 2 minutos. Pagamos por Pix e pronto.”
+      <cite>— Larissa, Tijuca</cite>
+    </blockquote>
+  </div>
+</section>
+
+<section id="faq" class="faq" aria-label="Perguntas frequentes">
+  <div class="container">
+    <h2>Perguntas frequentes</h2>
+    <details open>
+      <summary>Posso cancelar sem multa?</summary>
+      <p>Sim, sem custo até 6 horas antes do horário reservado.</p>
+    </details>
+    <details>
+      <summary>Choveu. E agora?</summary>
+      <p>Campos sintéticos normalmente mantêm o jogo. Se houver interdição, devolvemos o valor integral.</p>
+    </details>
+    <details>
+      <summary>Quais formas de pagamento?</summary>
+      <p>Pix, Cartão e Boleto. Em breve, dividir com a galera.</p>
+    </details>
+  </div>
+</section>
+
+{% endblock %}

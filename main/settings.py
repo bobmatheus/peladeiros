@@ -34,21 +34,15 @@ ROOT_URLCONF = 'main.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # ADICIONE templates/ na raiz do projeto
-        'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                # injeta variáveis úteis em todos os templates
-                'main.context_processors.settings_extras',
-            ],
-        },
-    },
+        # ...
+        'DIRS': [BASE_DIR / 'templates'],  # usar templates globais
+        # ...
+    }
 ]
+
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 WSGI_APPLICATION = 'main.wsgi.application'
 
